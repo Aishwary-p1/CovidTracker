@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Tracker</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <style type = "text/css"> 
+        .container{
+            margin-top:20px;
+            margin-bottom:20px;
+            border-radius: 20px;
+            height: 100px; 
+            width : 400px;
+            font-family: Lucida Console;
+        }
+        .initial_heading{
+            color:red; 
+            text-align: center; 
+            margin-top: 70px; 
+            margin-bottom: 70px;
+        }
+        .para_heading{
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+          }
+    </script>
+    <link rel="shortcut icon" href="https://images.squarespace-cdn.com/content/v1/5c4085e585ede1f50f94a4b9/1581018457505-JM3FO6WMFN9BGP3IOE8D/ke17ZwdGBToddI8pDm48kL5hQm_JZO5i_9Equza1B-57gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1URbcWFoTofQNHE0Fe4ADwtkYw2N2aveJw6FaFCcRrQmU3WUfc_ZsVm9Mi1E6FasEnQ/2019-nCoV-CDC-23312_without_background.png" type="image/x-icon">  
+</head>
+<body style="background-color: #161625;">
+
+
+    <div class="w3-bar w3-dark-grey">
+        <a href="" class="w3-bar-item w3-button w3-text-white w3-hover-white">Home</a>
+        <a href="https://t.me/covid_updater_bot" target="_blank" rel="noopener noreferrer" class="w3-text-blue w3-bar-item w3-button w3-hover-blue">TG Bot</a>
+        <a href="https://rapidapi.com/api-sports/api/covid-193" target="_blank" rel="noopener noreferrer" class="w3-text-deep-orange w3-bar-item w3-button w3-hover-deep-orange">API</a>
+    </div>
+
+    
+    <h1 style="color: white; text-align: center; margin-top: 20px; margin-bottom: 20px;"><span style="color: red;">COVID-19</span> Tracker</h1>
+
+    <form method = "post" class = "d-flex justify-content-center align-items-center" action = "">
+        {% csrf_token %}
+        <select class = "form-control" style = "width: auto; margin-top: 10px;" name = "selected_country">
+            {% for country in countries %}
+            <option>{{country}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-warning" name = "SUBMIT" style = "margin-top: 10px;">
+    </form>
+    <h1 class = "initial_heading w3-animate-zoom">{{selected_country}}</h1>
+    
+    <div class = "d-flex justify-content-center align-content-center" style = "margin-top: auto;">
+        <div class = "container w3-animate-zoom" style="background-color: #0074D9; ">
+            <p class = "para_heading"> New :  </p>
+            <h1>{{new}}</h1>
+        </div>
+
+        <div class = "container w3-animate-zoom" style="background-color: #FF4136;">
+            <p class = "para_heading"> Active :  </p>
+            <h1>{{active}}</h1>
+        </div>
+    </div>
+
+    <div class = "d-flex justify-content-center align-content-center" style = "margin-top: auto;">
+        <div class = "container w3-animate-zoom" style="background-color: #01FF70;">
+            <p class = "para_heading"> Recovered :  </p>
+            <h1>{{recovered}}</h1>
+        </div>
+
+        <div class = "container w3-animate-zoom" style="background-color: #FFDC00;">
+            <p class = "para_heading"> Critical :  </p>
+            <h1>{{critical}}</h1>
+        </div>
+    </div>
+
+    <div class = "d-flex justify-content-center align-content-center" style = "margin-top: auto;">
+        <div class = "container w3-animate-zoom" style="background-color: orangered;">
+            <p class = "para_heading"> Total :  </p>
+            <h1>{{total}}</h1>
+        </div>
+
+        <div class = "container w3-animate-zoom" style="background-color: #DDDDDD;">
+            <p class = "para_heading"> Deaths :  </p>
+            <h1>{{dead}}</h1>
+        </div>
+    </div>
+      
+    <div class="w3-bar w3-dark-grey" style = "margin-top: 30px;">
+        <p style = "text-align: center;">Ultimately, the greatest lesson that <span style = "color: red;">COVID-19</span> can teach humanity is that we are all in this together.</p>
+    </div>
+</body>
+</html>
