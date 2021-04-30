@@ -6,8 +6,8 @@ import requests
 url = "https://covid-193.p.rapidapi.com/statistics"
 
 headers = {
-    'x-rapidapi-key': "550351f4d0msh206b8c60b63cda7p124d73jsn2632c51a9301",
-    'x-rapidapi-host': "covid-193.p.rapidapi.com"
+    'x-rapidapi-key': #Your Rapid API Key#,
+    'x-rapidapi-host': ####
     }
 
 response = requests.request("GET", url, headers=headers).json()
@@ -41,6 +41,8 @@ def helloworldview(request):
                 total = response['response'][i]['cases']['total']
                 if critical is None:
                     critical = "NA"
+                if new is None:
+                    new = "NA"
                 try:
                     dead = int(total) - int(recovered) - int(active)
                 except:
